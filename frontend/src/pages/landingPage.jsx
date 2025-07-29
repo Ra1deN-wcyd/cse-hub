@@ -1,26 +1,22 @@
-import React from 'react'
-import { useNavigate } from 'react-router-dom'
-import './LandingPage.css' // 👈 Add this line to import the CSS
+import React from 'react';
+import { useNavigate, Link } from 'react-router-dom';
+import './LandingPage.css';
 
 const LandingPage = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   return (
     <div className="landing-container">
       {/* Nav Bar */}
       <nav className="navbar">
         <div className="nav-left">
-          {[
-            'Academic',
-            'Personal Improvement',
-            'Projects',
-            'Competitive Programming',
-            'Public Post',
-            'Chat',
-            'Personal Info'
-          ].map((item, index) => (
-            <span key={index} className="nav-item">{item}</span>
-          ))}
+          <Link to="/academic" className="nav-item">Academic</Link>
+          <Link to="/cp" className="nav-item">Competitive Programming</Link>
+          <span className="nav-item">Personal Improvement</span>
+          <span className="nav-item">Projects</span>
+          <span className="nav-item">Public Post</span>
+          <span className="nav-item">Chat</span>
+          <span className="nav-item">Personal Info</span>
         </div>
 
         <div className="nav-right">
@@ -39,7 +35,7 @@ const LandingPage = () => {
 
       {/* Feature Section */}
       <div className="features">
-        <div className="feature-box">
+        <div className="feature-box" onClick={() => navigate('/resources')}>
           <img src="https://img.icons8.com/fluency/96/book.png" alt="Academic" />
           <h3>Academic Resources</h3>
           <p>Get notes, tutorials, and support for your academic journey.</p>
@@ -56,7 +52,7 @@ const LandingPage = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default LandingPage
+export default LandingPage;
