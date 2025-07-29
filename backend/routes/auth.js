@@ -1,10 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../model/User');
 
-// ✅ Register route
+// Register route
 router.post('/register', async (req, res) => {
   const { name, email, password } = req.body;
 
@@ -12,7 +11,7 @@ router.post('/register', async (req, res) => {
   if (!name || !email || !password) {
     return res.status(400).json({ message: 'All fields are required' });
   }
-  if (password.length < 1) {
+  if (password.length < 2) {
     return res.status(400).json({ message: 'Password must be at least 2 characters' });
   }
 
@@ -21,8 +20,7 @@ router.post('/register', async (req, res) => {
     if (existingUser)
       return res.status(400).json({ message: 'User already exists' });
 
-    const hashedPassword = await bcrypt.hash(password, 10);
-    const newUser = new User({ name, email, password: hashedPassword });
+    const newUser = new User({ name, email, password }); // plain password, hashing done in pre-save hook
     await newUser.save();
 
     const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET, {
@@ -44,7 +42,7 @@ router.post('/register', async (req, res) => {
   }
 });
 
-// ✅ Login route
+// Login route
 router.post('/login', async (req, res) => {
   const { email, password } = req.body;
 
@@ -57,7 +55,7 @@ router.post('/login', async (req, res) => {
     if (!user)
       return res.status(400).json({ message: 'Invalid email or password' });
 
-    const isMatch = await bcrypt.compare(password, user.password);
+    const isMatch = await user.comparePassword(password);
     if (!isMatch)
       return res.status(400).json({ message: 'Invalid email or password' });
 
@@ -82,7 +80,7 @@ router.post('/login', async (req, res) => {
   }
 });
 
-// ✅ Protected route example
+// Middleware to verify token
 const verifyToken = (req, res, next) => {
   const authHeader = req.headers['authorization'];
   const token = authHeader?.split(' ')[1];
@@ -95,6 +93,7 @@ const verifyToken = (req, res, next) => {
   });
 };
 
+// Protected profile route example
 router.get('/profile', verifyToken, (req, res) => {
   res.json({ message: `Welcome back, ${req.user.email}` });
 });
