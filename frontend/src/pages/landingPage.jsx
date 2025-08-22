@@ -12,11 +12,13 @@ const LandingPage = () => {
         <div className="nav-left">
           <Link to="/academic" className="nav-item">Academic</Link>
           <Link to="/cp" className="nav-item">Competitive Programming</Link>
-          <span className="nav-item">Personal Improvement</span>
-          <span className="nav-item">Projects</span>
+          <Link to="/personal" className="nav-item">Personal Improvement</Link>
+          <Link to="/projects" className="nav-item">Projects</Link>
+           
           <span className="nav-item">Public Post</span>
           <span className="nav-item">Chat</span>
           <span className="nav-item">Personal Info</span>
+          
         </div>
 
         <div className="nav-right">
@@ -40,10 +42,15 @@ const LandingPage = () => {
           <h3>Academic Resources</h3>
           <p>Get notes, tutorials, and support for your academic journey.</p>
         </div>
-        <div className="feature-box">
-          <img src="https://img.icons8.com/fluency/96/idea.png" alt="Projects" />
+        <div className="feature-box" onClick={() => navigate('/personal')}>
+          <img src="https://img.icons8.com/fluency/96/idea.png" alt="Personal" />
+          <h3>Personal Improvement</h3>
+          <p>Enhance your skills, habits, and mindset for success.</p>
+        </div>
+        <div className="feature-box" onClick={() => navigate('/projects')}>
+          <img src="https://img.icons8.com/fluency/96/project.png" alt="Projects" />
           <h3>Projects & Ideas</h3>
-          <p>Work on collaborative or personal projects that stand out.</p>
+          <p>Work on exciting projects and build your portfolio.</p>
         </div>
         <div className="feature-box">
           <img src="https://img.icons8.com/fluency/96/group-chat.png" alt="Chat" />
