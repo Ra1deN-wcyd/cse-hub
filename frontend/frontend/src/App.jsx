@@ -8,9 +8,8 @@ import Academic from './pages/Academic';
 import Resources from './pages/Resources';
 import Cp from './pages/Cp';
 import Personal from './pages/Personal';
-import Projects from './pages/Projects'; 
-import Growth from './pages/Growth';
-import Internship from './pages/Internship';
+import Projects from './pages/Projects'; // ✅ Import Projects Page
+
 const App = () => {
   return (
     <Router>
@@ -22,9 +21,7 @@ const App = () => {
         <Route path="/resources" element={<Resources />} />
         <Route path="/cp" element={<Cp />} />
         <Route path="/personal" element={<Personal />} />
-        <Route path="/projects" element={<Projects />} /> 
-        <Route path="/Growth" element={<Growth />} /> 
-        <Route path="/Internship" element={<Internship />} /> 
+        <Route path="/projects" element={<Projects />} /> {/* ✅ New Route */}
       </Routes>
     </Router>
   );

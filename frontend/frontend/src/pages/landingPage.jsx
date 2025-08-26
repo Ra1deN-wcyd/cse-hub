@@ -14,13 +14,10 @@ const LandingPage = () => {
           <Link to="/cp" className="nav-item">Competitive Programming</Link>
           <Link to="/personal" className="nav-item">Personal Improvement</Link>
           <Link to="/projects" className="nav-item">Projects</Link>
-          <Link to="/Growth" className="nav-item">Growth</Link>
-           <Link to="/Internship" className="nav-item">Internship</Link>
-
+           
           <span className="nav-item">Public Post</span>
           <span className="nav-item">Chat</span>
           <span className="nav-item">Personal Info</span>
-         
           
         </div>
 

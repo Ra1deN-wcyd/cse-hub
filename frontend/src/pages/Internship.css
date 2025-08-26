@@ -1,0 +1,181 @@
+.internship-container {
+  padding: 40px;
+  background: linear-gradient(135deg, #e0f7fa, #f1f8ff);
+  min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.page-title {
+  font-size: 2.5rem;
+  color: #1e3a8a;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.page-subtitle {
+  text-align: center;
+  color: #444;
+  margin-bottom: 30px;
+  font-size: 1.1rem;
+}
+
+.job-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 25px;
+}
+
+.job-card {
+  background: #fff;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0px 6px 15px rgba(0,0,0,0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+  border-left: 6px solid transparent;
+}
+
+.job-card.internship {
+  border-left-color: #22c55e;
+}
+
+.job-card.fulltime {
+  border-left-color: #3b82f6;
+}
+
+.job-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0px 10px 20px rgba(0,0,0,0.15);
+}
+
+.job-card h2 {
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+  color: #111827;
+}
+
+.job-desc {
+  margin: 10px 0;
+  color: #333;
+  font-size: 0.95rem;
+}
+
+.badge {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  margin: 5px 0;
+}
+
+.badge-intern {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.badge-fulltime {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+.apply-btn {
+  background: linear-gradient(90deg, #3b82f6, #06b6d4);
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: transform 0.2s, opacity 0.3s;
+}
+
+.apply-btn:hover {
+  opacity: 0.9;
+  transform: scale(1.05);
+}
+
+/* Modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal {
+  background: #fff;
+  padding: 25px;
+  border-radius: 15px;
+  width: 450px;
+  max-width: 95%;
+  box-shadow: 0px 6px 20px rgba(0,0,0,0.2);
+}
+
+.apply-form label {
+  display: block;
+  margin-bottom: 12px;
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.apply-form input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 4px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.modal-buttons {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.submit-btn {
+  background: #22c55e;
+  color: #fff;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.submit-btn:hover {
+  background: #15803d;
+}
+
+.external-link {
+  background: #f59e0b;
+  color: #fff;
+  padding: 10px;
+  border-radius: 8px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+.external-link:hover {
+  background: #d97706;
+}
+
+.close-btn {
+  background: #dc2626;
+  color: #fff;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.close-btn:hover {
+  background: #b91c1c;
+}
