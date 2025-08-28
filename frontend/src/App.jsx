@@ -12,6 +12,7 @@ import Projects from './pages/Projects';
 import Growth from './pages/Growth';
 import Internship from './pages/Internship';
 import Profile from './pages/Profile';
+import UserSearch from './pages/Search';
 const App = () => {
   return (
     <Router>
@@ -27,6 +28,7 @@ const App = () => {
         <Route path="/Growth" element={<Growth />} /> 
         <Route path="/Internship" element={<Internship />} /> 
         <Route path="/profile" element={<Profile />} />
+      <Route path="/search" element={<UserSearch />} />
       </Routes>
     </Router>
   );

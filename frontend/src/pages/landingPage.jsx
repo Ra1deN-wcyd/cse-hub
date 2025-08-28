@@ -37,6 +37,12 @@ const LandingPage = () => {
           <Link to="/projects" className="nav-item">Projects</Link>
           <Link to="/Growth" className="nav-item">Growth</Link>
           <Link to="/Internship" className="nav-item">Internship</Link>
+
+          {/* Added margin-left style to create gap */}
+          <Link to="/search" className="nav-item" style={{ marginLeft: '20px' }}>
+            Search Users
+          </Link>
+
           <span className="nav-item">Public Post</span>
           <span className="nav-item">Chat</span>
         </div>

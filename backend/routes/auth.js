@@ -144,4 +144,25 @@ router.put('/profile', verifyToken, async (req, res) => {
   }
 });
 
+// New protected user search route
+// Example: GET /api/auth/search?name=John
+router.get('/search', verifyToken, async (req, res) => {
+  const searchTerm = req.query.name;
+
+  if (!searchTerm) {
+    return res.status(400).json({ message: 'Search term is required' });
+  }
+
+  try {
+    // Case-insensitive partial match on name
+    const regex = new RegExp(searchTerm, 'i');
+    const users = await User.find({ name: regex }).select('name email university githubLink');
+
+    res.json({ users });
+  } catch (err) {
+    console.error('Search error:', err);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
 module.exports = router;
