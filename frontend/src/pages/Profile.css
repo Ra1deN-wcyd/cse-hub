@@ -1,0 +1,73 @@
+.profile-container {
+  max-width: 500px;
+  margin: 3rem auto;
+  padding: 2rem;
+  background: #1f1f1f;
+  border-radius: 10px;
+  color: #fff;
+  box-shadow: 0 0 20px rgba(0,0,0,0.3);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #00c3ff;
+}
+
+.profile-field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.5rem;
+}
+
+.profile-field label {
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.profile-field input {
+  padding: 0.6rem;
+  border-radius: 6px;
+  border: none;
+  background-color: #2e2e2e;
+  color: #fff;
+  font-size: 1rem;
+}
+
+.profile-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.profile-buttons button {
+  flex: 1;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+button.edit {
+  background-color: #007bff;
+  color: #fff;
+}
+
+button.save {
+  background-color: #28a745;
+  color: #fff;
+}
+
+button.cancel {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+a {
+  color: #00c3ff;
+  text-decoration: none;
+}

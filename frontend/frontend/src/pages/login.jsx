@@ -1,11 +1,9 @@
-// src/pages/Login.jsx
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const navigate = useNavigate();
 
-  // React state for email & password inputs
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
@@ -26,8 +24,11 @@ const Login = () => {
       if (response.ok) {
         // Save JWT token to localStorage
         localStorage.setItem('token', data.token);
+        // Also save user data to localStorage for displaying username
+        localStorage.setItem('user', JSON.stringify(data.user));
+
         alert('Login successful!');
-        navigate('/landingpage'); // Redirect on success
+        navigate('/landingpage');  // YOUR ORIGINAL REDIRECT, unchanged
       } else {
         alert(data.message || 'Login failed');
       }
@@ -95,7 +96,7 @@ const Login = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
-              minLength={2} // per your backend validation
+              minLength={2}
               style={{
                 width: '100%',
                 padding: '0.75rem',

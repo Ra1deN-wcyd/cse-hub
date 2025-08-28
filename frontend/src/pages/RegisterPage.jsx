@@ -1,44 +1,65 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const RegisterPage = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({ name: '', email: '', password: '' });
-  const [success, setSuccess] = useState('');
-  const [error, setError] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
-    setError('');
-    setSuccess('');
+    setErrorMessage('');
+    setSuccessMessage('');
+    setIsLoading(true);
 
     try {
-      const res = await axios.post('http://localhost:5000/api/auth/register', formData);
-      setSuccess('✅ Registered successfully!');
-      setFormData({ name: '', email: '', password: '' });
-    } catch (err) {
-      if (err.response?.data?.message) {
-        setError(err.response.data.message);
+      const response = await fetch('http://localhost:5000/api/auth/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        // Save token and user info in localStorage for auto-login
+        localStorage.setItem('token', data.token);
+        localStorage.setItem('user', JSON.stringify(data.user));
+
+        setSuccessMessage('Registration successful! Redirecting to landing page...');
+
+        setTimeout(() => {
+          navigate('/'); // Redirect to landing page
+        }, 1500);
       } else {
-        setError('Something went wrong');
+        setErrorMessage(data.message || 'Registration failed');
       }
+    } catch (error) {
+      setErrorMessage('Something went wrong');
+    } finally {
+      setIsLoading(false);
     }
   };
 
   return (
-    <div style={{
-      background: 'linear-gradient(to right, #6a11cb, #2575fc)',
-      height: '100vh',
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      fontFamily: 'Arial, sans-serif'
-    }}>
+    <div
+      style={{
+        background: 'linear-gradient(to right, #6a11cb, #2575fc)',
+        height: '100vh',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        fontFamily: 'Arial, sans-serif'
+      }}
+    >
       <form
-        onSubmit={handleSubmit}
+        onSubmit={handleRegister}
         style={{
           backgroundColor: '#1f1f2e',
           padding: '2rem',
@@ -58,6 +79,7 @@ const RegisterPage = () => {
           value={formData.name}
           onChange={handleChange}
           style={inputStyle}
+          required
         />
 
         <label>Email</label>
@@ -67,6 +89,7 @@ const RegisterPage = () => {
           value={formData.email}
           onChange={handleChange}
           style={inputStyle}
+          required
         />
 
         <label>Password</label>
@@ -76,12 +99,16 @@ const RegisterPage = () => {
           value={formData.password}
           onChange={handleChange}
           style={inputStyle}
+          required
+          minLength={2}
         />
 
-        <button type="submit" style={buttonStyle}>Register</button>
+        <button type="submit" style={buttonStyle} disabled={isLoading}>
+          {isLoading ? 'Registering...' : 'Register'}
+        </button>
 
-        {success && <p style={{ color: 'limegreen', marginTop: '1rem' }}>{success}</p>}
-        {error && <p style={{ color: 'red', marginTop: '1rem' }}>{error}</p>}
+        {successMessage && <p style={{ color: 'limegreen', marginTop: '1rem' }}>{successMessage}</p>}
+        {errorMessage && <p style={{ color: 'red', marginTop: '1rem' }}>{errorMessage}</p>}
       </form>
     </div>
   );

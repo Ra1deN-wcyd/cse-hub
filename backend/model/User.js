@@ -18,10 +18,20 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
     minlength: 1
+  },
+  university: {
+    type: String,
+    trim: true,
+    default: ''
+  },
+  githubLink: {
+    type: String,
+    trim: true,
+    default: ''
   }
 });
 
-// Pre-save password hashing
+// Password hashing middleware
 UserSchema.pre('save', async function (next) {
   if (!this.isModified('password')) return next();
   const salt = await bcrypt.genSalt(10);

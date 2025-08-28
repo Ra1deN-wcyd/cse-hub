@@ -3,13 +3,12 @@ const router = express.Router();
 const jwt = require('jsonwebtoken');
 const User = require('../model/User');
 
-// Register route
+// Register user
 router.post('/register', async (req, res) => {
-  const { name, email, password } = req.body;
+  const { name, email, password, university, githubLink } = req.body;
 
-  // Basic validation
   if (!name || !email || !password) {
-    return res.status(400).json({ message: 'All fields are required' });
+    return res.status(400).json({ message: 'Name, email and password are required' });
   }
   if (password.length < 2) {
     return res.status(400).json({ message: 'Password must be at least 2 characters' });
@@ -20,7 +19,13 @@ router.post('/register', async (req, res) => {
     if (existingUser)
       return res.status(400).json({ message: 'User already exists' });
 
-    const newUser = new User({ name, email, password }); // plain password, hashing done in pre-save hook
+    const newUser = new User({
+      name,
+      email,
+      password,
+      university: university || '',
+      githubLink: githubLink || ''
+    });
     await newUser.save();
 
     const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET, {
@@ -33,7 +38,9 @@ router.post('/register', async (req, res) => {
       user: {
         id: newUser._id,
         name: newUser.name,
-        email: newUser.email
+        email: newUser.email,
+        university: newUser.university,
+        githubLink: newUser.githubLink,
       }
     });
   } catch (err) {
@@ -42,7 +49,7 @@ router.post('/register', async (req, res) => {
   }
 });
 
-// Login route
+// Login user
 router.post('/login', async (req, res) => {
   const { email, password } = req.body;
 
@@ -71,7 +78,9 @@ router.post('/login', async (req, res) => {
       user: {
         id: user._id,
         name: user.name,
-        email: user.email
+        email: user.email,
+        university: user.university,
+        githubLink: user.githubLink,
       }
     });
   } catch (err) {
@@ -80,7 +89,7 @@ router.post('/login', async (req, res) => {
   }
 });
 
-// Middleware to verify token
+// Middleware to verify JWT token
 const verifyToken = (req, res, next) => {
   const authHeader = req.headers['authorization'];
   const token = authHeader?.split(' ')[1];
@@ -93,9 +102,46 @@ const verifyToken = (req, res, next) => {
   });
 };
 
-// Protected profile route example
-router.get('/profile', verifyToken, (req, res) => {
-  res.json({ message: `Welcome back, ${req.user.email}` });
+// Protected profile route (GET user profile)
+router.get('/profile', verifyToken, async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id).select('-password');
+    if (!user) return res.status(404).json({ message: 'User not found' });
+    res.json({ user });
+  } catch (err) {
+    console.error('Profile fetch error:', err);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
+// Update profile route (PUT /api/auth/profile)
+router.put('/profile', verifyToken, async (req, res) => {
+  const { name, university, githubLink } = req.body;
+
+  try {
+    const user = await User.findById(req.user.id);
+    if (!user) return res.status(404).json({ message: 'User not found' });
+
+    if (name) user.name = name;
+    if (university) user.university = university;
+    if (githubLink) user.githubLink = githubLink;
+
+    await user.save();
+
+    res.json({
+      message: 'Profile updated successfully',
+      user: {
+        id: user._id,
+        name: user.name,
+        email: user.email,
+        university: user.university,
+        githubLink: user.githubLink,
+      }
+    });
+  } catch (err) {
+    console.error('Update profile error:', err);
+    res.status(500).json({ message: 'Server error' });
+  }
 });
 
 module.exports = router;

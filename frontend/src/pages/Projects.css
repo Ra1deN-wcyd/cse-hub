@@ -1,86 +1,77 @@
-.projects-container {
-  padding: 40px;
-  max-width: 1200px;
-  margin: auto;
-  font-family: 'Poppins', sans-serif;
-  background: linear-gradient(135deg, #f9f9ff, #eef7ff);
-  border-radius: 16px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+.profile-container {
+  max-width: 500px;
+  margin: 4rem auto;
+  padding: 2rem;
+  border-radius: 12px;
+  background: #1f1f1f;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.3);
+  color: #fff;
+  font-family: 'Segoe UI', sans-serif;
 }
 
-.projects-title {
-  font-size: 2.8rem;
+h2 {
   text-align: center;
-  margin-bottom: 40px;
-  background: linear-gradient(90deg, #6a11cb, #2575fc);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  font-weight: 700;
+  margin-bottom: 1.5rem;
+  font-size: 2rem;
+  color: #00c3ff;
 }
 
-.project-category {
-  margin-bottom: 50px;
+.profile-message {
+  text-align: center;
+  margin-bottom: 1rem;
+  color: #66ff66;
+  font-weight: 500;
 }
 
-.project-category h2 {
-  font-size: 1.8rem;
-  margin-bottom: 20px;
+.profile-loading {
+  text-align: center;
+  font-style: italic;
+  color: #ccc;
+}
+
+.profile-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.profile-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-field label {
+  margin-bottom: 0.5rem;
   font-weight: 600;
-  color: #333;
-  border-left: 6px solid #6a11cb;
-  padding-left: 10px;
 }
 
-.project-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 20px;
+.profile-field input {
+  padding: 0.6rem;
+  border-radius: 8px;
+  border: none;
+  background-color: #2d2d2d;
+  color: white;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
 }
 
-.project-card {
-  background: white;
-  border-radius: 16px;
-  padding: 20px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
-  border-left: 6px solid transparent;
+.profile-field input:focus {
+  background-color: #3d3d3d;
+  outline: none;
+}
+
+button {
+  padding: 0.75rem;
+  background-color: #2575fc;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
   cursor: pointer;
+  transition: background-color 0.2s ease;
 }
 
-.project-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-  background: linear-gradient(135deg, #fdfbfb, #ebedee);
-  border-left: 6px solid #2575fc;
-}
-
-.project-title {
-  font-size: 1.2rem;
-  font-weight: 600;
-  margin-bottom: 10px;
-  color: #2575fc;
-}
-
-.project-description {
-  font-size: 0.95rem;
-  line-height: 1.5;
-  color: #555;
-}
-
-/* 🟣 Add fun colorful borders for categories */
-.project-category:nth-child(1) h2 { border-left-color: #ff6b6b; }
-.project-category:nth-child(2) h2 { border-left-color: #feca57; }
-.project-category:nth-child(3) h2 { border-left-color: #48dbfb; }
-.project-category:nth-child(4) h2 { border-left-color: #1dd1a1; }
-.project-category:nth-child(5) h2 { border-left-color: #5f27cd; }
-.project-category:nth-child(6) h2 { border-left-color: #ff9f43; }
-.project-category:nth-child(7) h2 { border-left-color: #00d2d3; }
-.project-category:nth-child(8) h2 { border-left-color: #54a0ff; }
-
-/* 🟢 Make cards have different accents */
-.project-card:nth-child(odd) {
-  border-left: 6px solid #6a11cb;
-}
-.project-card:nth-child(even) {
-  border-left: 6px solid #ff6b6b;
+button:hover {
+  background-color: #1a5ed9;
 }

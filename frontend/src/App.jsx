@@ -11,6 +11,7 @@ import Personal from './pages/Personal';
 import Projects from './pages/Projects'; 
 import Growth from './pages/Growth';
 import Internship from './pages/Internship';
+import Profile from './pages/Profile';
 const App = () => {
   return (
     <Router>
@@ -25,6 +26,7 @@ const App = () => {
         <Route path="/projects" element={<Projects />} /> 
         <Route path="/Growth" element={<Growth />} /> 
         <Route path="/Internship" element={<Internship />} /> 
+        <Route path="/profile" element={<Profile />} />
       </Routes>
     </Router>
   );
