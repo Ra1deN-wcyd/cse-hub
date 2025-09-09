@@ -15,22 +15,24 @@ import Profile from './pages/Profile';
 import UserSearch from './pages/Search';
 const App = () => {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<RegisterPage />} />
-        <Route path="/academic" element={<Academic />} />
-        <Route path="/resources" element={<Resources />} />
-        <Route path="/cp" element={<Cp />} />
-        <Route path="/personal" element={<Personal />} />
-        <Route path="/projects" element={<Projects />} /> 
-        <Route path="/Growth" element={<Growth />} /> 
-        <Route path="/Internship" element={<Internship />} /> 
-        <Route path="/profile" element={<Profile />} />
-      <Route path="/search" element={<UserSearch />} />
-      </Routes>
-    </Router>
+    <div className="app-container">
+      <Router>
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/academic" element={<Academic />} />
+          <Route path="/resources" element={<Resources />} />
+          <Route path="/cp" element={<Cp />} />
+          <Route path="/personal" element={<Personal />} />
+          <Route path="/projects" element={<Projects />} /> 
+          <Route path="/Growth" element={<Growth />} /> 
+          <Route path="/Internship" element={<Internship />} /> 
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/search" element={<UserSearch />} />
+        </Routes>
+      </Router>
+    </div>
   );
 };
 

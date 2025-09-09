@@ -1,5 +1,4 @@
 import React from "react";
-import "./Projects.css";
 
 const projectCategories = {
   "Beginner Projects": [
@@ -61,21 +60,138 @@ const projectCategories = {
 
 const Projects = () => {
   return (
-    <div className="projects-container">
-      <h1 className="projects-title">Student Projects</h1>
-      {Object.keys(projectCategories).map((category, idx) => (
-        <div className="project-category" key={idx}>
-          <h2>{category}</h2>
-          <div className="project-list">
-            {projectCategories[category].map((project, index) => (
-              <div className="project-card" key={index}>
-                <h3 className="project-title">{project.title}</h3>
-                <p className="project-description">{project.description}</p>
-              </div>
-            ))}
+    <div
+      style={{
+        minHeight: '100vh',
+        background: 'linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%)',
+        padding: '2rem',
+        fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, sans-serif',
+        position: 'relative',
+        overflow: 'hidden'
+      }}
+    >
+      {/* Animated Background */}
+      <div
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          background: `
+            radial-gradient(circle at 20% 80%, rgba(102, 126, 234, 0.3) 0%, transparent 50%),
+            radial-gradient(circle at 80% 20%, rgba(240, 147, 251, 0.3) 0%, transparent 50%),
+            radial-gradient(circle at 40% 40%, rgba(79, 172, 254, 0.2) 0%, transparent 50%)
+          `,
+          animation: 'float 20s ease-in-out infinite'
+        }}
+      />
+
+      <div style={{ position: 'relative', zIndex: 1, maxWidth: '1400px', margin: '0 auto' }}>
+        <h1
+          style={{
+            textAlign: 'center',
+            fontSize: '3rem',
+            fontWeight: '700',
+            marginBottom: '3rem',
+            background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            backgroundClip: 'text'
+          }}
+        >
+          🚀 Student Projects
+        </h1>
+
+        {Object.keys(projectCategories).map((category, idx) => (
+          <div
+            key={idx}
+            style={{
+              marginBottom: '3rem'
+            }}
+          >
+            <h2
+              style={{
+                color: '#fff',
+                fontSize: '2rem',
+                marginBottom: '1.5rem',
+                fontWeight: '600',
+                textAlign: 'center',
+                background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text'
+              }}
+            >
+              {category}
+            </h2>
+            <div
+              style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+                gap: '1.5rem'
+              }}
+            >
+              {projectCategories[category].map((project, index) => (
+                <div
+                  key={index}
+                  style={{
+                    background: 'rgba(255, 255, 255, 0.1)',
+                    backdropFilter: 'blur(20px)',
+                    border: '1px solid rgba(255, 255, 255, 0.2)',
+                    borderRadius: '16px',
+                    padding: '1.5rem',
+                    boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.37)',
+                    transition: 'all 0.3s ease'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.target.style.transform = 'translateY(-5px)';
+                    e.target.style.boxShadow = '0 12px 40px 0 rgba(31, 38, 135, 0.5)';
+                    e.target.style.background = 'rgba(255, 255, 255, 0.15)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.target.style.transform = 'translateY(0)';
+                    e.target.style.boxShadow = '0 8px 32px 0 rgba(31, 38, 135, 0.37)';
+                    e.target.style.background = 'rgba(255, 255, 255, 0.1)';
+                  }}
+                >
+                  <h3
+                    style={{
+                      color: '#fff',
+                      fontSize: '1.2rem',
+                      marginBottom: '0.75rem',
+                      fontWeight: '600',
+                      background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                      WebkitBackgroundClip: 'text',
+                      WebkitTextFillColor: 'transparent',
+                      backgroundClip: 'text'
+                    }}
+                  >
+                    {project.title}
+                  </h3>
+                  <p
+                    style={{
+                      color: '#a0a0a0',
+                      fontSize: '0.9rem',
+                      lineHeight: '1.6',
+                      margin: 0
+                    }}
+                  >
+                    {project.description}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
+
+      <style jsx>{`
+        @keyframes float {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-10px); }
+        }
+      `}</style>
     </div>
   );
 };

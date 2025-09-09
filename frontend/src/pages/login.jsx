@@ -57,21 +57,53 @@ const Login = () => {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#1e1e1e',
+        background: 'linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%)',
+        position: 'relative',
+        overflow: 'hidden'
       }}
     >
+      {/* Animated Background */}
       <div
         style={{
-          background: 'linear-gradient(to bottom right, #6a11cb, #2575fc)',
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          background: `
+            radial-gradient(circle at 20% 80%, rgba(102, 126, 234, 0.3) 0%, transparent 50%),
+            radial-gradient(circle at 80% 20%, rgba(240, 147, 251, 0.3) 0%, transparent 50%),
+            radial-gradient(circle at 40% 40%, rgba(79, 172, 254, 0.2) 0%, transparent 50%)
+          `,
+          animation: 'float 20s ease-in-out infinite'
+        }}
+      />
+      
+      <div
+        style={{
+          background: 'rgba(255, 255, 255, 0.1)',
+          backdropFilter: 'blur(20px)',
+          border: '1px solid rgba(255, 255, 255, 0.2)',
           padding: '2rem 2.5rem',
           borderRadius: '20px',
-          boxShadow: '0 10px 25px rgba(0, 0, 0, 0.3)',
+          boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.37)',
           width: '90%',
           maxWidth: '400px',
           color: '#fff',
+          position: 'relative',
+          zIndex: 1
         }}
       >
-        <h2 style={{ textAlign: 'center', marginBottom: '1.5rem' }}>Login</h2>
+        <h2 style={{ 
+          textAlign: 'center', 
+          marginBottom: '1.5rem',
+          background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent',
+          backgroundClip: 'text',
+          fontSize: '2rem',
+          fontWeight: '700'
+        }}>🔑 Login</h2>
 
         {message && (
           <div
@@ -79,7 +111,9 @@ const Login = () => {
               marginBottom: '1rem',
               padding: '0.75rem',
               borderRadius: '8px',
-              backgroundColor: isError ? '#ff4d4f' : '#52c41a',
+              backgroundColor: isError ? 'rgba(255, 107, 107, 0.1)' : 'rgba(67, 233, 123, 0.1)',
+              border: `1px solid ${isError ? 'rgba(255, 107, 107, 0.3)' : 'rgba(67, 233, 123, 0.3)'}`,
+              color: isError ? '#ff6b6b' : '#43e97b',
               textAlign: 'center',
               fontWeight: 'bold',
             }}
@@ -90,7 +124,15 @@ const Login = () => {
 
         <form onSubmit={handleLogin}>
           <div style={{ marginBottom: '1rem' }}>
-            <label style={{ display: 'block', marginBottom: '0.5rem' }}>Email</label>
+            <label style={{ 
+              display: 'block', 
+              marginBottom: '0.5rem',
+              color: '#a0a0a0',
+              fontWeight: '500',
+              fontSize: '0.875rem',
+              textTransform: 'uppercase',
+              letterSpacing: '0.5px'
+            }}>Email</label>
             <input
               type="email"
               name="email"
@@ -101,15 +143,35 @@ const Login = () => {
                 width: '100%',
                 padding: '0.75rem',
                 borderRadius: '8px',
-                border: '1px solid #ccc',
+                border: '2px solid rgba(255, 255, 255, 0.1)',
                 fontSize: '1rem',
-                backgroundColor: '#2e2e2e',
+                backgroundColor: 'rgba(255, 255, 255, 0.05)',
                 color: '#fff',
+                backdropFilter: 'blur(10px)',
+                transition: 'all 0.3s ease'
+              }}
+              onFocus={(e) => {
+                e.target.style.borderColor = 'rgba(102, 126, 234, 0.5)';
+                e.target.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
+                e.target.style.boxShadow = '0 0 0 3px rgba(102, 126, 234, 0.1)';
+              }}
+              onBlur={(e) => {
+                e.target.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+                e.target.style.backgroundColor = 'rgba(255, 255, 255, 0.05)';
+                e.target.style.boxShadow = 'none';
               }}
             />
           </div>
           <div style={{ marginBottom: '1.5rem' }}>
-            <label style={{ display: 'block', marginBottom: '0.5rem' }}>Password</label>
+            <label style={{ 
+              display: 'block', 
+              marginBottom: '0.5rem',
+              color: '#a0a0a0',
+              fontWeight: '500',
+              fontSize: '0.875rem',
+              textTransform: 'uppercase',
+              letterSpacing: '0.5px'
+            }}>Password</label>
             <input
               type="password"
               name="password"
@@ -121,10 +183,22 @@ const Login = () => {
                 width: '100%',
                 padding: '0.75rem',
                 borderRadius: '8px',
-                border: '1px solid #ccc',
+                border: '2px solid rgba(255, 255, 255, 0.1)',
                 fontSize: '1rem',
-                backgroundColor: '#2e2e2e',
+                backgroundColor: 'rgba(255, 255, 255, 0.05)',
                 color: '#fff',
+                backdropFilter: 'blur(10px)',
+                transition: 'all 0.3s ease'
+              }}
+              onFocus={(e) => {
+                e.target.style.borderColor = 'rgba(102, 126, 234, 0.5)';
+                e.target.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
+                e.target.style.boxShadow = '0 0 0 3px rgba(102, 126, 234, 0.1)';
+              }}
+              onBlur={(e) => {
+                e.target.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+                e.target.style.backgroundColor = 'rgba(255, 255, 255, 0.05)';
+                e.target.style.boxShadow = 'none';
               }}
             />
           </div>
@@ -134,20 +208,42 @@ const Login = () => {
             style={{
               width: '100%',
               padding: '0.75rem',
-              backgroundColor: '#fff',
-              color: '#2575fc',
+              background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+              color: '#fff',
               border: 'none',
               borderRadius: '8px',
               fontSize: '1rem',
               fontWeight: 'bold',
               cursor: loading ? 'not-allowed' : 'pointer',
-              transition: 'background-color 0.3s ease',
+              transition: 'all 0.3s ease',
+              boxShadow: '0 4px 15px rgba(102, 126, 234, 0.4)',
+              position: 'relative',
+              overflow: 'hidden'
+            }}
+            onMouseEnter={(e) => {
+              if (!loading) {
+                e.target.style.transform = 'translateY(-2px)';
+                e.target.style.boxShadow = '0 6px 20px rgba(102, 126, 234, 0.6)';
+              }
+            }}
+            onMouseLeave={(e) => {
+              if (!loading) {
+                e.target.style.transform = 'translateY(0)';
+                e.target.style.boxShadow = '0 4px 15px rgba(102, 126, 234, 0.4)';
+              }
             }}
           >
-            {loading ? 'Logging in...' : 'Login'}
+            {loading ? 'Logging in...' : '🚀 Login'}
           </button>
         </form>
       </div>
+      
+      <style jsx>{`
+        @keyframes float {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-10px); }
+        }
+      `}</style>
     </div>
   );
 };
