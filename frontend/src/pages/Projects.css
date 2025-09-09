@@ -1,77 +1,192 @@
-.profile-container {
-  max-width: 500px;
-  margin: 4rem auto;
-  padding: 2rem;
+/* Container and overall page styling */
+.projects-container {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 1rem 2rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f9f9f9;
   border-radius: 12px;
-  background: #1f1f1f;
-  box-shadow: 0 0 25px rgba(0, 0, 0, 0.3);
-  color: #fff;
-  font-family: 'Segoe UI', sans-serif;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
 }
 
-h2 {
+/* Page title */
+.projects-title {
   text-align: center;
-  margin-bottom: 1.5rem;
-  font-size: 2rem;
-  color: #00c3ff;
+  font-size: 2.8rem;
+  color: #2c3e50;
+  margin-bottom: 2rem;
+  font-weight: 700;
+  letter-spacing: 1.2px;
 }
 
-.profile-message {
+/* Form container */
+.project-form {
+  background: #f4f4f4;
+  padding: 1.2rem 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  margin-bottom: 3rem;
+  border: 1px solid #ddd;
+}
+
+/* Form heading */
+.project-form h2 {
+  margin-bottom: 1.2rem;
+  font-size: 1.6rem;
+  color: #34495e;
+  border-bottom: 2px solid #3498db;
+  padding-bottom: 0.3rem;
   text-align: center;
+}
+
+/* Input & textarea styling */
+.project-form input[type="text"],
+.project-form textarea {
+  background-color: #ffffff;
+  color: #333;
+  width: 100%;
+  padding: 10px 14px;
   margin-bottom: 1rem;
-  color: #66ff66;
-  font-weight: 500;
+  font-size: 0.95rem;
+  border: 1.5px solid #ccc;
+  border-radius: 8px;
+  transition: border-color 0.3s ease, box-shadow 0.2s ease;
+  font-family: inherit;
+  display: block;
+  box-sizing: border-box;
+  height: 42px;
 }
 
-.profile-loading {
-  text-align: center;
+.project-form textarea {
+  height: 60px;
+  min-height: 60px;
+  resize: vertical;
+}
+
+.project-form input::placeholder,
+.project-form textarea::placeholder {
+  color: #888;
   font-style: italic;
-  color: #ccc;
 }
 
-.profile-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1.2rem;
-}
-
-.profile-field {
-  display: flex;
-  flex-direction: column;
-}
-
-.profile-field label {
-  margin-bottom: 0.5rem;
-  font-weight: 600;
-}
-
-.profile-field input {
-  padding: 0.6rem;
-  border-radius: 8px;
-  border: none;
-  background-color: #2d2d2d;
-  color: white;
-  font-size: 1rem;
-  transition: background-color 0.3s ease;
-}
-
-.profile-field input:focus {
-  background-color: #3d3d3d;
+/* Focus effect */
+.project-form input[type="text"]:focus,
+.project-form textarea:focus {
+  border-color: #3498db;
   outline: none;
+  box-shadow: 0 0 4px rgba(52, 152, 219, 0.3);
 }
 
-button {
-  padding: 0.75rem;
-  background-color: #2575fc;
+/* Submit button */
+.project-form button {
+  background: #3498db;
   color: white;
+  padding: 12px 20px;
+  font-size: 1rem;
+  font-weight: 600;
   border: none;
   border-radius: 8px;
-  font-size: 1rem;
-  font-weight: bold;
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  transition: background-color 0.3s ease, transform 0.15s ease;
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 200px;
 }
 
-button:hover {
-  background-color: #1a5ed9;
+/* Button hover */
+.project-form button:hover {
+  background: #2980b9;
+  transform: translateY(-2px);
+}
+
+/* Project list container */
+.project-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2.2rem;
+}
+
+/* Individual project cards */
+.project-card {
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+  padding: 2rem;
+  transition: transform 0.2s ease;
+  border: 1px solid #ddd;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Hover effect on project card */
+.project-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+/* Project title */
+.project-card h3 {
+  font-size: 1.7rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #2c3e50;
+}
+
+/* Project description */
+.project-card p {
+  font-size: 1.05rem;
+  line-height: 1.5;
+  color: #555;
+  margin-bottom: 0.8rem;
+}
+
+/* GitHub link styling */
+.project-card a {
+  color: #3498db;
+  text-decoration: none;
+  word-break: break-word;
+}
+
+.project-card a:hover {
+  text-decoration: underline;
+}
+
+/* Tech stack and posted by text */
+.project-card p:last-of-type {
+  font-size: 0.95rem;
+  color: #777;
+  font-style: italic;
+  margin-top: 0.5rem;
+}
+
+/* Responsive tweaks */
+@media (max-width: 480px) {
+  .projects-container {
+    padding: 1rem;
+  }
+
+  .project-form button {
+    width: 100%;
+  }
+
+  .project-form input[type="text"],
+  .project-form textarea {
+    font-size: 0.9rem;
+    padding: 10px 12px;
+    height: auto;
+  }
+
+  .project-card {
+    padding: 1.5rem;
+  }
+
+  .project-card h3 {
+    font-size: 1.4rem;
+  }
+
+  .project-card p {
+    font-size: 1rem;
+  }
 }

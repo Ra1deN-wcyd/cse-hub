@@ -13,6 +13,8 @@ import Growth from './pages/Growth';
 import Internship from './pages/Internship';
 import Profile from './pages/Profile';
 import UserSearch from './pages/Search';
+import PostsPage from './pages/postsPage';
+import Chat from './pages/chat';
 const App = () => {
   return (
     <Router>
@@ -29,6 +31,9 @@ const App = () => {
         <Route path="/Internship" element={<Internship />} /> 
         <Route path="/profile" element={<Profile />} />
       <Route path="/search" element={<UserSearch />} />
+       <Route path="/posts" element={<PostsPage />} /> {/* ✅ new route */}
+       <Route path="/chat" element={<Chat />} />
+        <Route path="/chat/:id" element={<Chat />} />
       </Routes>
     </Router>
   );

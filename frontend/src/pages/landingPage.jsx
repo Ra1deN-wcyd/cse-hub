@@ -43,8 +43,11 @@ const LandingPage = () => {
             Search Users
           </Link>
 
-          <span className="nav-item">Public Post</span>
-          <span className="nav-item">Chat</span>
+          {/* 🔥 Public Post navigates to /posts */}
+          <Link to="/posts" className="nav-item">Public Post</Link>
+
+          {/* Changed this to a Link so it navigates to the chat page */}
+          <Link to="/chat" className="nav-item">Chat</Link>
         </div>
 
         <div className="nav-right">
